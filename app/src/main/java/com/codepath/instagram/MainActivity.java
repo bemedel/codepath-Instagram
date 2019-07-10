@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
-                if(e == null) {
+                if(user == null) {
                     Log.d("LoginActivity", "Login successful!");
 
                     final Intent intent = new Intent(MainActivity.this, HomeActivity.class);
@@ -52,6 +53,25 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Log.e("LoginActivity", "Login failure.", e);
                     e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void signup(String username, String password) {
+        // Create the ParseUser
+        ParseUser user = new ParseUser();
+        // Set core properties
+        user.setUsername(username);
+        user.setPassword(password);
+        // Invoke signUpInBackground
+        user.signUpInBackground(new SignUpCallback() {
+            public void done(ParseException e) {
+                if (e == null) {
+                    // Hooray! Let them use the app now.
+                } else {
+                    // Sign up didn't succeed. Look at the ParseException
+                    // to figure out what went wrong
                 }
             }
         });
