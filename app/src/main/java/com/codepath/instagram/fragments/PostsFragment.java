@@ -26,8 +26,8 @@ public class PostsFragment extends Fragment {
 
     public static final String imagePath = "PostsFragment";
     private RecyclerView rvPosts;
-    private PostAdapter adapter;
-    private List<Post> mPosts;
+    protected PostAdapter adapter;
+    protected List<Post> mPosts;
 
     @Nullable
     @Override
@@ -50,7 +50,7 @@ public class PostsFragment extends Fragment {
         queryPosts();
     }
 
-    private void queryPosts() {
+    protected void queryPosts() {
         ParseQuery<Post> postQuery = new ParseQuery<Post>(Post.class);
         postQuery.include(Post.KEY_USER);
         postQuery.setLimit(20);

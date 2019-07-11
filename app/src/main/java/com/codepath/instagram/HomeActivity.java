@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.codepath.instagram.fragments.ComposeFragment;
 import com.codepath.instagram.fragments.PostsFragment;
+import com.codepath.instagram.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -42,8 +43,7 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case R.id.action_profile:
                     default:
-
-                        fragment = new ComposeFragment();
+                        fragment = new ProfileFragment();
                         Toast.makeText(HomeActivity.this, "Profile!", Toast.LENGTH_SHORT).show();
                         break;
                 }
