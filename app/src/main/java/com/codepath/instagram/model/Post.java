@@ -44,19 +44,4 @@ public class Post extends ParseObject {
     }
 }
 
-//    public static class Query extends ParseQuery<Post> {
-//         public Query() {
-//             super(Post.class);
-//         }
-//
-//         public Query getTop() {
-//             setLimit(20);
-//             return this; //builder pattern
-//         }
-//
-//         public Query withUser() {
-//             include("user");
-//             return this;
-//         }
-//    }
 

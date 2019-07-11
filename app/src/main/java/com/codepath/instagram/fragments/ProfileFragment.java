@@ -2,6 +2,9 @@ package com.codepath.instagram.fragments;
 
 import android.util.Log;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+
+import com.codepath.instagram.PostAdapter;
 import com.codepath.instagram.model.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -11,6 +14,17 @@ import com.parse.ParseUser;
 import java.util.List;
 
 public class ProfileFragment extends PostsFragment {
+
+    @Override
+    protected void setRecyclerView() {
+        whichFragment = 1;
+        // Create the adapter
+        adapter = new PostAdapter(getContext(), mPosts, whichFragment);
+        rvPosts.setAdapter(adapter);
+        // Set the layout manager on the recycler view
+        rvPosts.setLayoutManager(new GridLayoutManager(getContext(), 3));
+    }
+
     @Override
     protected void queryPosts() {
         ParseQuery<Post> postQuery = new ParseQuery<Post>(Post.class);
@@ -36,5 +50,7 @@ public class ProfileFragment extends PostsFragment {
                 }
             }
         });
+        ParseUser.logOut();
+        ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
     }
 }
