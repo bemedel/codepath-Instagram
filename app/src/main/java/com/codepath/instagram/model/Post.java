@@ -3,14 +3,21 @@ package com.codepath.instagram.model;
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 @ParseClassName("Post")
 public class Post extends ParseObject {
+    public static final String KEY_USER = "User";
     private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_IMAGE = "image";
-    private static final String KEY_USER = "user";
+    public static final String KEY_CREATED_AT = "createdAt";
+
+
+    // getPhotoFileUri() is defined in
+    // https://guides.codepath.com/android/Accessing-the-Camera-and-Stored-Media#using-capture-intent
+    //File photoFile = getPhotoFileUri(photoFileName);
+
+    //ParseFile parseFile = new ParseFile(photoFile);
 
     public String getDescription() {
         return getString(KEY_DESCRIPTION);
@@ -24,8 +31,8 @@ public class Post extends ParseObject {
         return getParseFile(KEY_IMAGE);
     }
 
-    public void setImage(ParseFile image) {
-        put(KEY_IMAGE, image);
+    public void setImage(ParseFile parseFile) {
+        put(KEY_IMAGE, parseFile);
     }
 
     public ParseUser getUser() {
@@ -35,20 +42,21 @@ public class Post extends ParseObject {
     public void setUser(ParseUser user) {
         put(KEY_USER, user);
     }
-
-    public static class Query extends ParseQuery<Post> {
-         public Query() {
-             super(Post.class);
-         }
-
-         public Query getTop() {
-             setLimit(20);
-             return this; //builder pattern
-         }
-
-         public Query withUser() {
-             include("user");
-             return this;
-         }
-    }
 }
+
+//    public static class Query extends ParseQuery<Post> {
+//         public Query() {
+//             super(Post.class);
+//         }
+//
+//         public Query getTop() {
+//             setLimit(20);
+//             return this; //builder pattern
+//         }
+//
+//         public Query withUser() {
+//             include("user");
+//             return this;
+//         }
+//    }
+
