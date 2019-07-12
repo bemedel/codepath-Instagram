@@ -1,6 +1,7 @@
 package com.codepath.instagram;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,10 +41,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Post post = posts.get(position);
+        final Post post = posts.get(position);
         holder.bind(post);
-
-        // if whichFragment == 0
+        holder.ivImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Post selectedPost = post;
+                Intent intent = new Intent(context, DetailsActivity.class);
+                intent.putExtra("post", selectedPost);
+                intent.putExtra("user", selectedPost.getUser());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
